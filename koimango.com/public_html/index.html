@@ -2,8 +2,31 @@
 <html lang="en">
 
 <head>
+
+  <style>
+    /* Set additional styling options for the columns */
+    .column {
+    float: left;
+    }
+
+    /* Set width length for the left, right and middle columns */
+    .left {
+    width: 20%;
+    }
+
+    .right {
+    width: 20%;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+  </style>
+
   <meta charset="UTF-8" />
-  <title>KoiMango :))</title>
+  <title>KoiMango :)</title>
   <link rel="icon", href="https://super.so/icon/dark/sun.svg">
 </head>
 
@@ -16,7 +39,7 @@
 
     <div style="height: 25%; width:20%; background-color: rgb(219, 217, 217); float: right;">
       <center>
-        <h1> Team Koimang</h1>
+        <h1> Team Koimango</h1>
         <h3>Team members</h3>
       </center>
       <ul>
@@ -33,6 +56,43 @@
       <ul>
         <li><a href="https://koimango.com/hello.php">PHP</a></li>
         <li><a href="https://koimango.com/hw1/report.html">Analytics</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="min-width: 100%; float:left">
+    <h3>Homework 2</h3>
+    <div class="row" style="box-sizing: border-box;">
+      <div class="column left" style="background-color:#FFB695;">
+          <p>Perl</p>
+      </div>
+      <div class="column right" style="background-color:#74C3E1;">
+          <p>C</p>
+      </div>
+    </div>
+
+    <div style="float:left; width:10%"> 
+      <p>Perl</p>
+      <ul>
+        <li><a href="">Hello, Perl!</a></li>
+        <li><a href="">Hello, Perl!(JSON)</a></li>
+        <li><a href="">Environment Variables</a></li>
+        <li><a href="">GET Echo</a></li>
+        <li><a href="">POST Echo</a></li>
+        <li><a href="">General Echo</a></li>
+        <li><a href="">Sessioning</a></li>
+      </ul>
+    </div>
+    <div style="float:right; width:10%"> 
+      <p>C</p>
+      <ul>
+        <li><a href="">Hello, C!</a></li>
+        <li><a href="">Hello, C!(JSON)</a></li>
+        <li><a href="">Environment Variables</a></li>
+        <li><a href="">GET Echo</a></li>
+        <li><a href="">POST Echo</a></li>
+        <li><a href="">General Echo</a></li>
+        <li><a href="">Sessioning</a></li>
       </ul>
     </div>
   </div>
