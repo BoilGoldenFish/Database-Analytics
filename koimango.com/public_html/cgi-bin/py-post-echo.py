@@ -9,5 +9,8 @@ print("<html><head><title>POST Message Body</title></head>\
     <body><h1 align=center>POST Message Body</h1>\
   	<hr/>\n")
 
-print("Message Body: " + str(sys.stdin) + "\n<br/>")
+print("Message Body: ")
+for line in sys.stdin:
+  print(line)
+  print("\n<br/>")
 print("</body></html>")

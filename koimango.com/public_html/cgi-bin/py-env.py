@@ -2,8 +2,8 @@
 import os
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>Hello CGI World</title></head>\
-    <body><h1 align=center>Hello HTML World</h1>\
+print("<html><head><title>Environment Variables</title></head>\
+    <body><h1 align=center>Environment Variables</h1>\
   	<hr/>\n")
 
 environment_items = dict(**os.environ)
