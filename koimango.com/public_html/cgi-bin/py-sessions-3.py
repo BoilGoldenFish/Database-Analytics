@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 import os
-print("Cache-Control: no-cache")
 name = ""
-if input() != None:   
-    name = input().split('=')[1]
+try:
+    name = input()
+    print("Cache-Control: no-cache")
+    name = name.split('=')[1]
     if len(name) > 0:
         print("Content-type: text/html")
         print("Set-Cookie: " + name + "\n\n")
     else:
         print("Content-type: text/html\n\n")
+except EOFError: 
+    name = os.environ.get("HTTP_COOKIE")
+
 
 print("<html>")
 print("<head>")
