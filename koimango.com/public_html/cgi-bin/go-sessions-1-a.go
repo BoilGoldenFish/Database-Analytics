@@ -2,8 +2,8 @@ package main
 
 import(
 	"fmt"
-	// "os"
-	// "bufio"
+	"os"
+	"bufio"
 )
 
 func main(){
@@ -16,6 +16,10 @@ func main(){
 	fmt.Println("<body>")
 
 	fmt.Println("<h1>Go Sessions Page 1</h1>")
+
+	reader := bufio.NewReader(os.Stdin)
+	s,_ := reader.ReadString('\n')
+	fmt.Println(s)
 
 	fmt.Println("</body></html>")
 }
