@@ -30,7 +30,7 @@ func main(){
 
 		fmt.Println ("<br/><br/>")
 		fmt.Println ("<a href=\"/cgi-bin/go-sessions-2.go\">Session Page 2</a><br/>")
-		fmt.Println ("<a href=\"/go-cgiform.html\">Go CGI Form</a><br />")
+		fmt.Println ("<a href=\"/cgi-bin/go-cgiform.go\">Go CGI Form</a><br />")
 		fmt.Println ("<form style=\"margin-top:30px\" action=\"/cgi-bin/go-destroy-session.go\" method=\"get\">")
 		fmt.Println ("<button type=\"submit\">Destroy Session</button>")
 		fmt.Println ("</form>")
@@ -52,7 +52,7 @@ func main(){
 
 			fmt.Println ("<br/><br/>")
 			fmt.Println ("<a href=\"/cgi-bin/go-sessions-2.go\">Session Page 2</a><br/>")
-			fmt.Println ("<a href=\"/go-cgiform.go\">Go CGI Form</a><br />")
+			fmt.Println ("<a href=\"/cgi-bin/go-cgiform.go\">Go CGI Form</a><br />")
 			fmt.Println ("<form style=\"margin-top:30px\" action=\"/cgi-bin/go-destroy-session.go\" method=\"get\">")
 			fmt.Println ("<button type=\"submit\">Destroy Session</button>")
 			fmt.Println ("</form>")

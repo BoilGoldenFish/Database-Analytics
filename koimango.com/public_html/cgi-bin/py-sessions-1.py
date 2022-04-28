@@ -1,40 +1,84 @@
 #!/usr/bin/python3
 import os
-print("Cache-Control: no-cache")
-name = ""
-if input() != None:   
-    name = input().split('=')[1]
-    if len(name) > 0:
-        print("Content-type: text/html")
-        print("Set-Cookie: " + name + "\n\n")
-    else:
-        print("Content-type: text/html\n\n")
 
-print("<html>")
-print("<head>")
-print("<title>Python Sessions</title>")
-print("</head>")
-print("<body>")
-print("<h1>Python Sessions Page 1</h1>")
+temp = os.environ.get("HTTP_COOKIE").split(';')[0]
+name = temp.split('=')[0]
+token = temp.split('=')[1]
 
-if len(name) > 0:
-    print("<tr><td>Cookie:</td><td>" + name + "</td></tr>\n")
-elif (os.environ.get("HTTP_COOKIE") != None and os.environ.get("HTTP_COOKIE") == "destroyed"):
-    print("<tr><td>Cookie:</td><td>%s</td></tr>\n" + os.environ.get("HTTP_COOKIE"))
+if name =="token" and token!="destroyed" and token!="" :
+    print("Cache-Control: no-cache")
+    print("Content-type: text/html\n\n")
+    print("<html>")
+    print("<head>")
+    print("<title>Python Sessions</title>")
+    print("</head>")
+    print("<body>")
+
+    print("<h1>Go Sessions Page 1</h1>")
+
+    if name != "":
+        print("Name:" + token)
+
+
+    print ("<br/><br/>")
+    print ("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a><br/>")
+    print ("<a href=\"/cgi-bin/py-cgiform.py\">Python CGI Form</a><br />")
+    print ("<form style=\"margin-top:30px\" action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
+    print ("<button type=\"submit\">Destroy Session</button>")
+    print ("</form>")
+    print ("<a href=\"https://koimango.com>Home</a><br/>")
+    print("</body></html>")
+
 else:
-    print("<tr><td>Cookie:</td><td>None</td></tr>\n")
-  
-print("</table>")
+    if token=="destroyed" or name!="token":
+        print("Cache-Control: no-cache")
+        print("Content-type: text/html\n\n")
+        print("<html>")
+        print("<head>")
+        print("<title>Python Sessions</title>")
+        print("</head>")
+        print("<body>")
 
+        print("<h1>Go Sessions Page 1</h1>")
 
-print("<br />")
-print("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>")
-print("<br />")
-print("<a href=\"/py-cgiform.html\">Python CGI Form</a>")
-print("<br /><br />")
+        print("No name found for this session")
 
-print("<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
-print("<button type=\"submit\">Destroy Session</button>")
-print("</form>")
+        print ("<br/><br/>")
+        print ("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a><br/>")
+        print ("<a href=\"/cgi-bin/py-cgiform.py\">Python CGI Form</a><br />")
+        print ("<form style=\"margin-top:30px\" action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
+        print ("<button type=\"submit\">Destroy Session</button>")
+        print ("</form>")
+        print ("<a href=\"https://koimango.com>Home</a><br/>")
+        print("</body></html>")
+    else:
+        value = input().split('=')[1]
 
-print("</body></html>")
+        print("Cache-Control: no-cache")
+        if value == ""{
+            print("Set-Cookie: token=No name found for session")
+        } else {
+            print("Set-Cookie: token="+ value)
+        }
+        print("Content-type: text/html\n\n")
+        print("<html>")
+        print("<head>")
+        print("<title>Golang Sessions</title>")
+        print("</head>")
+        print("<body>")
+
+        print("<h1>Go Sessions Page 1</h1>")
+
+        if name != ""{
+            print("Name: "+ value)
+        }
+        
+
+        print ("<br/><br/>")
+        print ("<a href=\"/cgi-bin/go-sessions-2.go\">Session Page 2</a><br/>")
+        print ("<a href=\"/cgi-bin/go-cgiform.go\">Go CGI Form</a><br />")
+        print ("<form style=\"margin-top:30px\" action=\"/cgi-bin/go-destroy-session.go\" method=\"get\">")
+        print ("<button type=\"submit\">Destroy Session</button>")
+        print ("</form>")
+        print ("<a href=\"https://koimango.com>Home</a><br/>")
+        print("</body></html>")
