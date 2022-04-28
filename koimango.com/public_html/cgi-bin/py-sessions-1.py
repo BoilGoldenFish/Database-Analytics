@@ -75,9 +75,9 @@ else:
         
 
         print ("<br/><br/>")
-        print ("<a href=\"/cgi-bin/go-sessions-2.go\">Session Page 2</a><br/>")
-        print ("<a href=\"/cgi-bin/go-cgiform.go\">Go CGI Form</a><br />")
-        print ("<form style=\"margin-top:30px\" action=\"/cgi-bin/go-destroy-session.go\" method=\"get\">")
+        print ("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a><br/>")
+        print ("<a href=\"/cgi-bin/py-cgiform.py\">Go CGI Form</a><br />")
+        print ("<form style=\"margin-top:30px\" action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
         print ("<button type=\"submit\">Destroy Session</button>")
         print ("</form>")
         print ("<a href=\"https://koimango.com>Home</a><br/>")
