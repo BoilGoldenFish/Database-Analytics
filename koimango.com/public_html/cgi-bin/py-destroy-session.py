@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 print("Cache-Control: no-cache")
-print("Set-Cookie: token=destroyed")
+print("Set-Cookie: token_p=destroyed")
 print("Content-type: text/html\n\n")
 
 print("<html>")

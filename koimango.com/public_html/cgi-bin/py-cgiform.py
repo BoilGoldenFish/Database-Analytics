@@ -2,7 +2,7 @@
 
 
 print("Cache-Control: no-cache")
-print("Set-Cookie: token=")
+print("Set-Cookie: token_p=")
 print("Content-type: text/html\n\n")
 print("<!doctype html>")
 print("<html>")
