@@ -14,7 +14,7 @@ if name =="token" and token!="destroyed" and token!="" :
     print("</head>")
     print("<body>")
 
-    print("<h1>Go Sessions Page 1</h1>")
+    print("<h1>Python Sessions Page 1</h1>")
 
     if name != "":
         print("Name:" + token)
@@ -39,7 +39,7 @@ else:
         print("</head>")
         print("<body>")
 
-        print("<h1>Go Sessions Page 1</h1>")
+        print("<h1>Python Sessions Page 1</h1>")
 
         print("No name found for this session")
 
@@ -55,11 +55,10 @@ else:
         value = input().split('=')[1]
 
         print("Cache-Control: no-cache")
-        if value == ""{
+        if value == "":
             print("Set-Cookie: token=No name found for session")
-        } else {
+        else:
             print("Set-Cookie: token="+ value)
-        }
         print("Content-type: text/html\n\n")
         print("<html>")
         print("<head>")
@@ -67,11 +66,10 @@ else:
         print("</head>")
         print("<body>")
 
-        print("<h1>Go Sessions Page 1</h1>")
+        print("<h1>Python Sessions Page 1</h1>")
 
-        if name != ""{
+        if name != "":
             print("Name: "+ value)
-        }
         
 
         print ("<br/><br/>")

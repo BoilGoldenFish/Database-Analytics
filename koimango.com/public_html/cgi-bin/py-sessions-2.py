@@ -9,9 +9,9 @@ print("<title>Python Sessions</title>")
 print("</head>")
 print("<body>")
 
-print("<h1>Go Sessions Page 2</h1>")
+print("<h1>Python Sessions Page 2</h1>")
 
-temp = os.Getenv("HTTP_COOKIE").split(";")[0]
+temp = os.environ.get("HTTP_COOKIE").split(";")[0]
 name = temp.split('=')[0]
 token = temp.split('=')[1]
 
