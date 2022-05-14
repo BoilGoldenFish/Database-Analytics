@@ -15,8 +15,8 @@
 
   <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
   <script>window.LogRocket && window.LogRocket.init('e3rsoc/koimangocom');</script>
-  <script src="./collector.js"></script>
-
+  <script src="./collector.js" defer></script>
+  
 
   <style>
     /* Set additional styling options for the columns */
@@ -45,6 +45,17 @@
     content: "";
     display: table;
     clear: both;
+    }
+
+    #checkCSS {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      text-transform: uppercase;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.7em;
+      color: wheat;
     }
   </style>
 
@@ -138,6 +149,11 @@
     </div>
 
   </div>
+
+  <footer>
+    <p id="checkCSS">made by BoilGoldenFish&hearts;</p>
+  </footer>
+
 </body>
 
 </html>
