@@ -12,6 +12,7 @@ func main() {
 
   fmt.Println("<head>")
   fmt.Println("<title>CGI Form</title>")
+  fmt.Println("<script src=\"../collector.js\" defer></script>")
   fmt.Println("</head>")
 
   fmt.Println("<body>")

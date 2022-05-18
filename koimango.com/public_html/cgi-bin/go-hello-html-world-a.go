@@ -20,7 +20,7 @@ func main(){
 
 	fmt.Println("Cache-Control: no-cache")
 	fmt.Println("Content-type: text/html\n\n")
-	fmt.Println("<html><head><title>Hello CGI World</title></head><body><h1 align=center>Hello HTML World</h1><hr/>\n")
+	fmt.Println("<html><head><title>Hello CGI World</title><script src=\"../collector.js\" defer></script></head><body><h1 align=center>Hello HTML World</h1><hr/>\n")
 	fmt.Println("Hello World<br/>\n")
 	fmt.Println("This program was generated at:", current.Format(time.ANSIC), "\n<br/>")
 	fmt.Println("Your current IP address is:", ipAddress, "\n<br/>")

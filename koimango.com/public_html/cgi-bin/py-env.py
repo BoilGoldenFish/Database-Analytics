@@ -2,7 +2,7 @@
 import os
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>Environment Variables</title></head>\
+print("<html><head><title>Environment Variables</title><script src=\"../collector.js\" defer></script></head>\
     <body><h1 align=center>Environment Variables</h1>\
   	<hr/>\n")
 

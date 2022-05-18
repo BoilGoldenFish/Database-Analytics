@@ -3,7 +3,7 @@ from urllib.parse import urlparse, parse_qs
 import os
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>GET query string</title></head>\
+print("<html><head><title>GET query string</title><script src=\"../collector.js\" defer></script></head>\
     <body><h1 align=center>GET query string</h1>\
   	<hr/>\n")
 

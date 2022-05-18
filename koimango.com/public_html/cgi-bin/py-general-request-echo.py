@@ -5,7 +5,7 @@ import sys
 
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>General Request Echo</title></head>\
+print("<html><head><title>General Request Echo</title><script src=\"../collector.js\" defer></script></head>\
     <body><h1 align=center>General Request Echo</h1>\
   	<hr/>\n")
 print("<table>\n")

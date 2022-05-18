@@ -8,7 +8,7 @@ print("<!doctype html>")
 print("<html>")
 
 print("<head>")
-print("<title>CGI Form</title>")
+print("<title>CGI Form</title><script src=\"../collector.js\" defer></script>")
 print("</head>")
 
 print("<body>")

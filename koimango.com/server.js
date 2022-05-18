@@ -1,19 +1,26 @@
-// app.js file
+const express = require('express');
+const mongoose = require('mongoose');
 
-var jsonServer = require('json-server');
+// set up our express app
+const app = express();
 
-// Returns an Express server
-var server = jsonServer.create();
+// connect to mongodb
+mongoose.connect('mongodb://localhost/data');
+mongoose.Promise = global.Promise;
 
-// Set default middlewares (logger, static, cors and no-cache)
-server.use(jsonServer.defaults());
+app.use(express.static('public'));
 
-// Add custom routes
-// server.get('/custom', function (req, res) { res.json({ msg: 'hello' }) })
+app.use(express.json());
+// initialize routes
+app.use('/api',require('./routes/api'));
 
-// Returns an Express router
-var router = jsonServer.router('db.json');
+// error handling middleware
+app.use(function(err,req,res,next){
+    //console.log(err);
+    res.status(422).send({error: err.message});
+});
 
-server.use(router);
-
-server.listen(3000);
+// listen for requests
+app.listen(process.env.port || 4000, function(){
+    console.log('Ready to Go!');
+});

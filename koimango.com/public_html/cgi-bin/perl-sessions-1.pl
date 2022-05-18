@@ -18,7 +18,7 @@ $session->param("username", $name);
 
 print "<html>";
 print "<head>";
-print "<title>Perl Sessions</title>";
+print "<title>Perl Sessions</title><script src=\"../collector.js\" defer></script>";
 print "</head>";
 print "<body>";
 

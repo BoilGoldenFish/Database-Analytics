@@ -4,7 +4,7 @@ print "Cache-Control: no-cache\n";
 print "Content-type: text/html\n\n";
 print "<html>";
 print "<head>";
-print "<title>Hello, Perl!</title>";
+print "<title>Hello, Perl!</title><script src=\"../collector.js\" defer></script>";
 print "</head>";
 print "<body>";
 

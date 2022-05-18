@@ -17,7 +17,7 @@ func main(){
 		fmt.Println("Content-type: text/html\n\n")
 		fmt.Println("<html>")
 		fmt.Println("<head>")
-		fmt.Println("<title>Golang Sessions</title>")
+		fmt.Println("<title>Golang Sessions</title><script src=\"../collector.js\" defer></script>")
 		fmt.Println("</head>")
 		fmt.Println("<body>")
 

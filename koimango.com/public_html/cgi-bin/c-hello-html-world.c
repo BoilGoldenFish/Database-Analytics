@@ -9,7 +9,7 @@ int main(void)
   // Print HTML header
   printf("Cache-Control: no-cache\n");
   printf("Content-type: text/html\n\n");
-  printf("<html><head><title>Hello CGI World</title></head>\
+  printf("<html><head><title>Hello CGI World</title><script src=\"../collector.js\" defer></script></head>\
 	<body><h1 align=center>Hello HTML World</h1>\
   	<hr/>\n");
 

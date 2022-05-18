@@ -5,7 +5,7 @@ import sys
 
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>POST Message Body</title></head>\
+print("<html><head><title>POST Message Body</title><script src=\"../collector.js\" defer></script></head>\
     <body><h1 align=center>POST Message Body</h1>\
   	<hr/>\n")
 

@@ -9,7 +9,7 @@ import(
 func main() {
 	fmt.Println("Cache-Control: no-cache")
 	fmt.Println("Content-type: text/html\n\n")
-	fmt.Println("<html><head><title>GET query string</title></head><body><h1 align=center>GET query string</h1><hr/>\n")
+	fmt.Println("<html><head><title>GET query string</title><script src=\"../collector.js\" defer></script></head><body><h1 align=center>GET query string</h1><hr/>\n")
 	fmt.Println("Raw query string:", os.Getenv("QUERY_STRING"), "<br/><br/>")
 	fmt.Println("<table> Formatted Query String: <br/>")
 

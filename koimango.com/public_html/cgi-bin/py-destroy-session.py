@@ -4,7 +4,7 @@ print("Set-Cookie: token_p=destroyed")
 print("Content-type: text/html\n\n")
 
 print("<html>")
-print("<head><title>Python Session Destroyed</title></head>")
+print("<head><title>Python Session Destroyed</title><script src=\"../collector.js\" defer></script></head>")
 print("<body>")
 print("<h1>Python Session Destroyed</h1>")
 

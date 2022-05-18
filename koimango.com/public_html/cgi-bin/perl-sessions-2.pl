@@ -21,7 +21,7 @@ print "Content-Type: text/html\n\n";
 
 print "<html>";
 print "<head>";
-print "<title>Perl Sessions</title>";
+print "<title>Perl Sessions</title><script src=\"../collector.js\" defer></script>";
 print "</head>";
 print "<body>";
 

@@ -11,7 +11,7 @@ now = datetime.now()
 
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n\n")
-print("<html><head><title>Hello CGI World</title></head>\
+print("<html><head><title>Hello CGI World</title><script src=\"../collector.js\" defer></script></head>\
     <body><h1 align=center>Hello HTML World</h1>\
   	<hr/>\n")
 

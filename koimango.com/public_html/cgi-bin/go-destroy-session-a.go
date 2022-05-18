@@ -11,7 +11,7 @@ func main() {
 
 	// Body - HTML
 	fmt.Println("<html>");
-	fmt.Println("<head><title>Go Session Destroyed</title></head>");
+	fmt.Println("<head><title>Go Session Destroyed</title><script src=\"../collector.js\" defer></script></head>");
 	fmt.Println("<body>");
 	fmt.Println("<h1>Go Session Destroyed</h1>");
 
