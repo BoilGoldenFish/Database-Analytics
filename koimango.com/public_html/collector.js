@@ -1,29 +1,46 @@
 window.onload = () => {
-    sessionStorage.setItem("user agent", window.navigator.userAgent);
+    sessionStorage.setItem("userAgent", window.navigator.userAgent);
     sessionStorage.setItem("language", window.navigator.language);
-    sessionStorage.setItem("allow cookies", navigator. cookieEnabled);
-    sessionStorage.setItem("allow javascript", true);
-    sessionStorage.setItem('screen size', [window.innerWidth, window.innerHeight]);
-    sessionStorage.setItem('window size', [screen.availWidth, screen.availHeight]);
+    sessionStorage.setItem("allowCookies", navigator. cookieEnabled);
+    sessionStorage.setItem("allowJavascript", true);
+    sessionStorage.setItem('screenSize', [window.innerWidth, window.innerHeight]);
+    sessionStorage.setItem('windowSize', [screen.availWidth, screen.availHeight]);
     sessionStorage.setItem('connection', navigator.connection.effectiveType);
     let day = new Date();
-    sessionStorage.setItem('enter', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds());
-    
-
-    
+    sessionStorage.setItem('enter', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds()+','+day.getDate()+'th, '+day.getMonth());
+        
     let css = document.querySelector("#checkCSS");
     if (window.getComputedStyle(css).getPropertyValue('text-transform') != 'uppercase'){
-        sessionStorage.setItem('allow CSS', false);
+        sessionStorage.setItem('allowCSS', false);
     } else {
-        sessionStorage.setItem('allow CSS', true);
+        sessionStorage.setItem('allowCSS', true);
     }
 
     let img = document.querySelector('img');
     if (img.complete == true && img.naturalHeight != 0){
-        sessionStorage.setItem('allow img', true);
+        sessionStorage.setItem('allowImg', true);
     } else {
-        sessionStorage.setItem('allow img', false);
+        sessionStorage.setItem('allowImg', false);
     }
+
+    function sendData(){
+        let keys = ['userAgent', 'language', 'allowCookies', 'allowJavascript', 
+            'screenSize', 'windowSize', 'connection', 'allowCSS', 'allowImg'];
+
+        let data = {};
+        
+        for (let i = 0; i < keys.length; i++) {
+            data[keys[i]] = sessionStorage.getItem(keys[i]);
+        }
+        
+        // let text = JSON.stringify(data);
+        //console.log(typeof sessionStorage.getItem('windowSize'));
+
+        fetch("https://koimango.com/api/static", { method: 'POST', headers: { 'Content-type': 'application/json'}, body: JSON.stringify(data)});
+    }
+
+    sendData();
+        
 
 
     let perf = performance.timing;
@@ -31,40 +48,40 @@ window.onload = () => {
     let end = perf.domComplete;
 
     sessionStorage.setItem('timing object', perf);
-    sessionStorage.setItem('start loading', start);
-    sessionStorage.setItem('end loading', end);
-    sessionStorage.setItem('total loading', end-start);
+    sessionStorage.setItem('startLoading', start);
+    sessionStorage.setItem('endLoading', end);
+    sessionStorage.setItem('totalLoading', end-start);
 
-    sendData();
+    sendDataD();
 
     function mouseMove(event){
         sessionStorage.setItem( 
             "move", [event.clientX, event.clientY])
         
-        sendData();
+        sendDataD();
     }
     
     function mouseClick(event) {
         sessionStorage.setItem( 
             "click", [event.clientX, event.clientY, event.button])
-        sendData();
+        sendDataD();
     }
     
     function mouseScroll(){
         sessionStorage.setItem( 
             "scroll", [window.scrollX, window.scrollY])
-        sendData();
+        sendDataD();
     }
     
     function keyUp(event) {
         sessionStorage.setItem('keyup', event.keyCode)
-        sendData();
+        sendDataD();
     }
     
     
     function keyDown(event) {
         sessionStorage.setItem('keydown', event.keyCode)
-        sendData();
+        sendDataD();
     }
     
     window.addEventListener('mousemove', mouseMove);
@@ -85,15 +102,15 @@ window.onload = () => {
         function timeout() {
             inactive = true;
             let day = new Date();
-            sessionStorage.setItem('inactive start', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds());
+            sessionStorage.setItem('inactiveStart', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds());
             period = Date.now();
-            sendData();
+            sendDataD();
         }
         function resetTimer() {
             if (inactive == true){
                 inactive = false;
-                sessionStorage.setItem('inactive period', Date.now()-period);
-                sendData();
+                sessionStorage.setItem('inactivePeriod', Date.now()-period);
+                sendDataD();
             }
             clearTimeout(time);
             time = setTimeout(timeout, 2000)
@@ -107,11 +124,11 @@ window.onload = () => {
         if (document.visibilityState === 'hidden') {
             let day = new Date();
             sessionStorage.setItem('left', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds());
-            sendData();
+            sendDataD();
         } else if (document.visibilityState == 'visible' || document.visibilityState == 'prerender'){
             let day = new Date();
             sessionStorage.setItem('enter', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds());
-            sendData();
+            sendDataD();
         }
     };
     
@@ -123,30 +140,31 @@ window.onload = () => {
         } else {
             sessionStorage.setItem('page', 'koimango.com'+path);
         }
-        sendData()
+        sendDataD()
     }
     checkPage();
     
     
-    function sendData(){
-        let keys = ['user agent', 'language', 'allow cookies', 'allow javascript', 
-            'screen size', 'window size', 'connection', 'allow CSS', 'allow img', 'timing object', 
-            'start loading', 'end loading', 'total loading', 'move', 'click', 'scroll', 'keyup', 'keydown',
-            'inactive start', 'inactive period', 'left', 'enter', 'page'];
     
-        let data = {};
-        
-        for (let i = 0; i < keys.length; i++) {
-            data[keys[i]] = sessionStorage.getItem(keys[i]);
+    function sendDataD(){
+        let keysD = ['startLoading', 'endLoading', 'totalLoading', 'move', 'click', 'scroll', 'keyup', 'keydown',
+        'inactiveStart', 'inactivePeriod', 'left', 'enter', 'page'];
+
+        let dataD = {};
+
+        for (let j = 0; j < keysD.length; j++) {
+            dataD[keysD[j]] = sessionStorage.getItem(keysD[j]);
         }
         
-        let text = JSON.stringify(data);
-        console.log(text);
+        let textD = JSON.stringify(dataD);
+        //console.log(typeof sessionStorage.getItem('windowSize'));
     
-        fetch("https://koimango.com/json/posts", { method: 'POST', headers: { 'Content-type': 'application/json'}, body: JSON.stringify(data)});
+        fetch("https://koimango.com/api/perf", { method: 'POST', headers: { 'Content-type': 'application/json'}, body: JSON.stringify(dataD)});
     }
 
 };
+
+
 
 
 
