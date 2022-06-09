@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "activeEmail": "",
-      "activePassword": "",
-      "admin": "false",
+      "activeEmail": "grader",
+      "activePassword": "$2a$10$gN7S2bdKWi/xEVlDYAqT.OC2Wu4LbuK64b9E2bi6oMVpnpmCsiv5q",
+      "admin": true,
       "id": 0
     },
     {
