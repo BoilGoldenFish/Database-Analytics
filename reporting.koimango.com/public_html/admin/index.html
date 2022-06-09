@@ -1,0 +1,66 @@
+<!-- <!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta charset="utf-8">
+  <title>Admin Page</title>
+  <script nonce="undefined" src="https://cdn.zinggrid.com/dev/zinggrid-dev.min.js"></script>
+  <style>
+    body {
+      background: #e6e6e6;
+    }
+ 
+    zing-grid[loading] {
+      height: 456px;
+    }
+  </style>
+</head>
+ 
+<body>
+  <h1>User Management Page</h1>
+ 
+  <zing-grid caption="Static Data" layout="card" layout-controls>
+    <zg-data>
+      <zg-param name="src" value="http://reporting.koimango.com:3001/admin/"></zg-param>
+    </zg-data>
+  </zing-grid>
+  
+  <form action="http://reporting.koimango.com:3001/logout" method="POST">
+    <button type="submit" class="btn btn-primary btn-block">
+      Logout
+    </button>
+  </form>
+</body>
+ 
+</html> -->
+
+<html class="zg-html">
+
+<head>
+  <meta charset="utf-8">
+  <title>ZingGrid: Build a CRUD Grid in 60 Seconds</title>
+  <script nonce="undefined" src="https://cdn.zinggrid.com/dev/zinggrid-dev.min.js"></script>
+  <style>
+    zg-column:nth-child(1),
+    zg-row zg-cell:nth-child(1),
+    zg-row zg-head-cell:nth-child(1) {
+      display: none;
+    }
+
+    zing-grid[loading] {
+      height: 392px;
+    }
+  </style>
+</head>
+
+<body class="zg-body">
+  <zing-grid src="http://reporting.koimango.com:3001/users" editor editor-controls></zing-grid>
+  <p>Refresh to see the changes :)</p>
+  <form action="http://reporting.koimango.com:3001/logout" method="POST">
+    <button type="submit" class="btn btn-primary btn-block">
+      Logout
+    </button>
+  </form>
+</body>
+
+</html>

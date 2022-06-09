@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "activeEmail": "",
+      "activePassword": "",
+      "admin": false,
+      "id": 0
+    },
+    {
+      "email": "linnniw@gmail.com",
+      "password": "$2a$10$NtfaObO5x4KmID4KB6ixg.lcLVIyrrw2fCIYXIWebMC0V6pdsTbKe",
+      "activeEmail": "",
+      "activePassword": "",
+      "admin": "",
+      "id": 1
+    }
+  ]
+}

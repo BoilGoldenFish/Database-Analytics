@@ -1,19 +1,537 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="zg-html">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Have a good Day :)</title>
+  <meta charset="utf-8">
+  <title>Collected Data</title>
+  <script nonce="undefined" src="https://cdn.zinggrid.com/1.2.0/zinggrid.min.js"></script>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    .zg-body {
+      background: #fff;
+    }
+
+    zing-grid[loading] {
+      height: 500px;
+    }
+
+    /** Expandable Row Trigger **/
+
+    .zg-body .arrow {
+      display: inline-block;
+      transform: rotate(90deg);
+      transform-origin: 0% 0%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: relative;
+      left: 2.5rem;
+      top: 0.25rem;
+    }
+
+    .zg-body .active .arrow {
+      transform: rotate(180deg);
+      left: 2.5rem;
+      top: 1.5rem;
+    }
+
+    /** Expandable Row Header **/
+
+    .zg-body .row--header {
+      display: flex;
+      align-items: center;
+    }
+
+    .zg-body .team--info {
+      margin-left: 2.5rem;
+    }
+
+    /** Expandable Row CSS **/
+
+    .zg-body .default {
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .zg-body zg-row:hover {
+      cursor: pointer;
+      background-color: #eeeeee;
+      transition: background-color 0.18s ease-in;
+    }
+
+    .zg-body .active:hover {
+      background-color: initial;
+    }
+
+    .zg-body .expandable {
+      background: #f5f5f5;
+      padding: 1rem 2rem;
+      display: none;
+      background-color: #eeeeee;
+      transition: background-color 0.25s ease-in;
+    }
+
+    .zg-body .active .expandable {
+      display: block;
+    }
+
+    /** Set padding **/
+
+    /** NOTE: Css looks off here, but it is to fix how it looks on site **/
+
+    .zg-body .default,
+    .expandable {
+      line-height: 1.5rem;
+      padding: 0.9rem 1rem;
+    }
+
+    .zg-body .default--arrow {
+      padding: 0.9rem 0;
+    }
+
+    .zg-body zg-cell[type="custom"] {
+      padding: 0;
+    }
+
+    .zg-body zg-cell[type="custom"]>[data-field-index] {
+      display: block;
+    }
+
+    zing-grid {
+      height: 100%;
+    }
+
+    .chart--container {
+      height: 50%;
+      width: 100%;
+      min-height: 750px;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+
+    #reports a:link, #reports a:visited {
+        background-color: #3b44f1df;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #reports a:hover, #reports a:active {
+        background-color: rgba(40, 209, 224, 0.902);
+    }
+
+    #myChart2 h2 {
+      color:#3b41f1df;
+      text-align: center;
+    }
+  </style>
 </head>
 
-<body>
-  <h1>CSE 135 HW4 Lives!</h1>
-  <h2>reporting.koimango.com</h2>
-  <script>
-    document.write(`Live @ ${new Date()}`);
-  </script>
+<body class="zg-body">
+  <div id= "reports">
+    <a href="http://reporting.koimango.com/detail">Detailed Report</a>
+  </div>
+  
+  <div id="myChart1" class="chart--container">
+  </div>
 
+  <div id="myChart2" class="chart--container">
+    <h2>Current loading time</h2>
+  </div>
+
+  <zing-grid id="grid" caption="Page Visit Record" viewport-stop loading src="https://koimango.com/api/perf/">
+    <zg-colgroup>
+      <zg-column type="custom" header="Page Visits">
+        <template>
+            <div class="row--header">
+              <div class="default  default--arrow">
+                <span class="arrow">⌃</span>
+              </div>
+              <div class="team--info">[[record.page]] ([[record.enter]])</div>
+            </div>
+            <div class="expandable">
+              <p><strong>id:</strong> [[record._id]]</p>
+              <p><strong>Loading Time:</strong> [[record.totalLoading]]ms</p>
+              <p><strong>Left Time:</strong> [[record.left]]</p>
+            </div>
+           </template>
+      </zg-column>
+    </zg-colgroup>
+  </zing-grid>
+  <script>
+    window.addEventListener('load', () => {
+      // Javascript code to execute after DOM content
+      const zgRef = document.querySelector('zing-grid');
+      zgRef.addEventListener('row:click', bindExpandEvent);
+
+      function bindExpandEvent(e) {
+        let oDOMRow = e.detail.ZGTarget;
+        oDOMRow.classList.toggle('active');
+      }
+    });
+
+
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+    let v1=[]
+    let v2=[]
+    let v3=[]
+
+    const d = new Date();
+    let time = d.getTime();
+
+    fetch("https://koimango.com/api/perf")
+    .then(res => res.json())
+    .then(data => {
+      let value = Number(data[data.length - 1].totalLoading)
+      console.log(value)
+
+      data.forEach(element => {
+        if (element.click != null){
+          let t = element.click.split(',')
+          v1.push(Number(t[0]))
+          v2.push(Number(t[1]))
+          v3.push(Number(t[2]))
+        }
+      })
+      let chartConfig1 = {
+      type: 'line',
+      backgroundColor: '#2C2C39',
+      title: {
+        text: 'Mouse Click Position Stats',
+        adjustLayout: true,
+        marginTop: '7px',
+        fontColor: '#E3E3E5'
+      },
+      legend: {
+        align: 'center',
+        backgroundColor: 'none',
+        borderWidth: '0px',
+        item: {
+          cursor: 'hand',
+          fontColor: '#E3E3E5'
+        },
+        marker: {
+          type: 'circle',
+          borderWidth: '0px',
+          cursor: 'hand'
+        },
+        verticalAlign: 'top'
+      },
+      plot: {
+        aspect: 'spline',
+        lineWidth: '2px',
+        marker: {
+          borderWidth: '0px',
+          size: '5px'
+        }
+      },
+      plotarea: {
+        margin: 'dynamic 70'
+      },
+      scaleX: {
+        item: {
+          fontColor: '#E3E3E5'
+        },
+        lineColor: '#E3E3E5',
+        minValue: 1651456620000,
+        step: 'hour',
+        transform: {
+          type: 'date',
+          all: '%D %M %d<br>%h:%i:%s'
+        },
+        zooming: true,
+        zoomTo: [0, 15]
+      },
+      scaleY: {
+        guide: {
+          lineStyle: 'dashed'
+        },
+        item: {
+          fontColor: '#E3E3E5'
+        },
+        lineColor: '#E3E3E5',
+        minorGuide: {
+          alpha: 0.7,
+          lineColor: '#E3E3E5',
+          lineStyle: 'dashed',
+          lineWidth: '1px',
+          visible: true
+        },
+        minorTick: {
+          lineColor: '#E3E3E5'
+        },
+        minorTicks: 1,
+        tick: {
+          lineColor: '#E3E3E5'
+        }
+      },
+      crosshairX: {
+        marker: {
+          alpha: 0.5,
+          size: '7px'
+        },
+        plotLabel: {
+          borderRadius: '3px',
+          multiple: true
+        },
+        scaleLabel: {
+          backgroundColor: '#53535e',
+          borderRadius: '3px'
+        }
+      },
+      crosshairY: {
+        type: 'multiple',
+        lineColor: '#E3E3E5',
+        scaleLabel: {
+          bold: true,
+          borderRadius: '3px',
+          decimals: 2,
+          fontColor: '#2C2C39',
+          offsetX: '-5px'
+        }
+      },
+      shapes: [{
+        type: 'rectangle',
+        id: 'view_all',
+        backgroundColor: '#53535e',
+        borderColor: '#E3E3E5',
+        borderRadius: '3px',
+        borderWidth: '1px',
+        cursor: 'hand',
+        label: {
+          text: 'View All',
+          bold: true,
+          fontColor: '#E3E3E5',
+          fontSize: '12px'
+        },
+        width: '75px',
+        height: '20px',
+        x: '85%',
+        y: '11%'
+      }],
+      tooltip: {
+        borderRadius: '3px',
+        borderWidth: '0px'
+      },
+      preview: {
+        adjustLayout: true,
+        borderColor: '#E3E3E5',
+        label: {
+          fontColor: '#E3E3E5'
+        },
+        mask: {
+          backgroundColor: '#E3E3E5'
+        }
+      },
+      series: [{
+          values: v1,
+          lineColor: '#E34247',
+          marker: {
+            backgroundColor: '#E34247'
+          },
+          text: 'left button'
+        },
+        {
+          values: v2,
+          lineColor: '#FEB32E',
+          marker: {
+            backgroundColor: '#FEB32E'
+          },
+          text: 'right button'
+        },
+        {
+          values: v3,
+          lineColor: '#31A59A',
+          marker: {
+            backgroundColor: '#31A59A'
+          },
+          text: 'middle button'
+        }
+      ]
+    };
+
+    let chartConfig2 = {
+      type: 'gauge',
+      theme: 'classic',
+      alpha: 1,
+      backgroundColor: '#fff #eee',
+      plot: {
+        tooltip: {
+          backgroundColor: 'black',
+        },
+        backgroundColor: '#666',
+      },
+      plotarea: {
+        margin: '0 0 0 0',
+      },
+      scale: {
+        sizeFactor: 1.25,
+        offsetY: '120px',
+      },
+      scaleR: {
+        values: '0:6000:100',
+        backgroundColor: '#eeeeee,#b3b3b3',
+        borderColor: '#b3b3b3',
+        borderWidth: '2px',
+        ring: {
+          offsetR: '130px',
+          rules: [{
+              backgroundColor: '#348D00',
+              rule: '%v >= 0 && %v < 899',
+            },
+            {
+              backgroundColor: '#B1AD00',
+              rule: '%v >= 900 && %v < 2099',
+            },
+            {
+              backgroundColor: '#FAC100',
+              rule: '%v >= 2100 && %v < 2999',
+            },
+            {
+              backgroundColor: '#EC7928',
+              rule: '%v >= 3000 && %v < 5999',
+            },
+            {
+              backgroundColor: '#FB0A02',
+              rule: '%v >= 6000',
+            },
+          ],
+          size: '10px',
+        },
+      },
+      labels: [{
+          id: 'lbl1',
+          text: 'Very slow',
+          tooltip: {
+            text: '> 5000 <br>ms',
+            backgroundColor: '#ea0901',
+            padding: '10px',
+            shadow: false,
+          },
+          anchor: 'c',
+          backgroundColor: '#FB0A02',
+          offsetX: '160px',
+          padding: '10px',
+          textAlign: 'center',
+          width: '80px',
+          x: '50%',
+          y: '90%',
+        },
+        {
+          id: 'lbl2',
+          text: 'Slow',
+          tooltip: {
+            text: '> 3000 < 4999 <br>ms',
+            backgroundColor: '#da6817',
+            padding: '10px',
+            shadow: false,
+          },
+          anchor: 'c',
+          backgroundColor: '#EC7928',
+          offsetX: '80px',
+          padding: '10px',
+          textAlign: 'center',
+          width: '80px',
+          x: '50%',
+          y: '90%',
+        },
+        {
+          id: 'lbl3',
+          text: 'Medium',
+          tooltip: {
+            text: '> 2100 < 2999 <br>ms',
+            backgroundColor: '#e9b000',
+            padding: '10px',
+            shadow: false,
+          },
+          anchor: 'c',
+          backgroundColor: '#FAC100',
+          offsetX: '0px',
+          padding: '10px',
+          textAlign: 'center',
+          width: '80px',
+          x: '50%',
+          y: '90%',
+        },
+        {
+          id: 'lbl4',
+          text: 'Fast',
+          tooltip: {
+            text: '> 900 < 2099 <br>ms',
+            backgroundColor: '#a09c00',
+            padding: '10px',
+            shadow: false,
+          },
+          anchor: 'c',
+          backgroundColor: '#B1AD00',
+          offsetX: '-80px',
+          padding: '10px',
+          textAlign: 'center',
+          width: '80px',
+          x: '50%',
+          y: '90%',
+        },
+        {
+          id: 'lbl5',
+          text: 'Very Fast',
+          tooltip: {
+            text: ' < 899 <br>ms',
+            backgroundColor: '#237b00',
+            padding: '10px',
+            shadow: false,
+          },
+          anchor: 'c',
+          backgroundColor: '#348D00',
+          offsetX: '-160px',
+          padding: '10px',
+          textAlign: 'center',
+          width: '80px',
+          x: '50%',
+          y: '90%',
+        },
+      ],
+      series: [{
+        values: [value],
+        animation: {
+          effect: 'ANIMATION_EXPAND_VERTICAL',
+          method: 'ANIMATION_REGULAR_EASE_OUT',
+          speed: 2500,
+        },
+      }, ],
+    };
+
+    // EVENTS
+    // -----------------------------
+    zingchart.bind('myChart1', 'shape_click', function(p) {
+      if (p.shapeid == 'view_all') {
+        zingchart.exec(p.id, 'viewall');
+      }
+    })
+
+    // RENDER CHARTS
+    // -----------------------------
+    zingchart.render({
+      id: 'myChart1',
+      data: chartConfig1,
+      height: '100%',
+      width: '100%',
+    });
+  
+
+    zingchart.render({
+      id: 'myChart2',
+      data: chartConfig2,
+      height: '100%',
+      width: '100%',
+    });
+
+      // window:load event for Javascript to run after HTML
+    // because this Javascript is injected into the document head
+    
+  })
+  </script>
 </body>
 
 </html>
