@@ -1,3 +1,4 @@
+let day = new Date();
 window.onload = () => {
     sessionStorage.setItem("userAgent", window.navigator.userAgent);
     sessionStorage.setItem("language", window.navigator.language);
@@ -6,8 +7,9 @@ window.onload = () => {
     sessionStorage.setItem('screenSize', [window.innerWidth, window.innerHeight]);
     sessionStorage.setItem('windowSize', [screen.availWidth, screen.availHeight]);
     sessionStorage.setItem('connection', navigator.connection.effectiveType);
-    let day = new Date();
-    sessionStorage.setItem('enter', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds()+','+day.getDate()+'th, '+day.getMonth());
+    let month = day.getMonth() + 1
+    sessionStorage.setItem('enter', day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds()+','+day.getDate()+'th, '+ month);
+    console.log(day.getMonth())
         
     let css = document.querySelector("#checkCSS");
     if (window.getComputedStyle(css).getPropertyValue('text-transform') != 'uppercase'){

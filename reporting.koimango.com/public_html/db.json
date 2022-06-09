@@ -3,16 +3,22 @@
     {
       "activeEmail": "",
       "activePassword": "",
-      "admin": false,
+      "admin": "false",
       "id": 0
     },
     {
-      "email": "linnniw@gmail.com",
-      "password": "$2a$10$NtfaObO5x4KmID4KB6ixg.lcLVIyrrw2fCIYXIWebMC0V6pdsTbKe",
-      "activeEmail": "",
-      "activePassword": "",
-      "admin": "",
-      "id": 1
+      "email": "grader@ucsd.edu",
+      "password": "$2a$10$gN7S2bdKWi/xEVlDYAqT.OC2Wu4LbuK64b9E2bi6oMVpnpmCsiv5q",
+      "admin": true,
+      "id": 1,
+      "name": "grader"
+    },
+    {
+      "email": "kio@ucsd.edu",
+      "password": "$2a$10$hGPXIZuMnyoYNmu5XfVGi.EXExVrJ7YNY.i8ltJWan2AyFCNyhCWK",
+      "name": "koi",
+      "admin": "false",
+      "id": 2
     }
   ]
 }
