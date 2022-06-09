@@ -3,7 +3,7 @@
 ## CSE135 HW4 by Lainey Liu & Mingkun Sun
 
 ## Login Info
-site
+site (The dashboard and report might take a few seconds to load due the large amount of data)
 1. [Login](http://reporting.koimango.com/login)
 2. [dashboard](http://reporting.koimango.com) 
 3. [detail report](http://reporting.koimango.com/detail)<br>
