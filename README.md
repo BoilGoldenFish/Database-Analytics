@@ -5,7 +5,8 @@
 ## Login Info
 site
 1. [Login](http://reporting.koimango.com/login)
-2. [dashboard & detail report](http://reporting.koimango.com) <br>
+2. [dashboard](http://reporting.koimango.com) 
+3. [detail report](http://reporting.koimango.com/detail)<br>
 
 admin account
 1. email: grader@ucsd.edu
